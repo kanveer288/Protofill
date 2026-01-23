@@ -1,0 +1,32 @@
+FICHIERS À AJOUTER DANS CE DOSSIER :
+
+1. background.mp4 - Vidéo de fond
+   - Format : MP4
+   - Résolution : 1920x1080 ou plus
+   - Style : Sombre, atmosphérique
+
+2. audio.mp3 - Musique de fond
+   - Format : MP3
+   - Durée : 2-5 minutes
+   - Style : Ambiance, électronique
+
+3. avatar.png - Image de profil
+   - Format : PNG
+   - Taille : 300x300 pixels minimum
+   - Style : Portrait ou logo
+
+4. cursor.gif - Curseur personnalisé
+   - Format : GIF
+   - Taille : 16x32 pixels
+   - Style : Curseur animé
+
+POUR TESTER LE SITE SANS CES FICHIERS :
+- Le site fonctionnera mais affichera des erreurs dans la console
+- Les éléments vidéo et audio ne se chargeront pas
+- L'avatar affichera une image cassée
+- Le curseur utilisera le curseur par défaut
+
+RECOMMANDATIONS :
+- Utilisez des fichiers de taille raisonnable pour un chargement rapide
+- Optimisez les vidéos et audios pour le web
+- Testez sur différents navigateurs

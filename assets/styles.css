@@ -1,0 +1,370 @@
+/* Styles supplémentaires pour Great THUG */
+
+/* Effet de néon pour le titre */
+.neon-text {
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 15px #ff4d4d,
+        0 0 20px #ff4d4d,
+        0 0 25px #ff4d4d,
+        0 0 30px #ff4d4d,
+        0 0 35px #ff4d4d;
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 15px #ff4d4d,
+            0 0 20px #ff4d4d,
+            0 0 25px #ff4d4d,
+            0 0 30px #ff4d4d,
+            0 0 35px #ff4d4d;
+    }
+    to {
+        text-shadow: 
+            0 0 2px #fff,
+            0 0 5px #fff,
+            0 0 8px #ff4d4d,
+            0 0 12px #ff4d4d,
+            0 0 15px #ff4d4d,
+            0 0 18px #ff4d4d,
+            0 0 22px #ff4d4d;
+    }
+}
+
+/* Effet de glitch pour le titre */
+.glitch {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    animation: glitch-1 0.5s infinite;
+    color: #00ffff;
+    z-index: -1;
+}
+
+.glitch::after {
+    animation: glitch-2 0.5s infinite;
+    color: #ff00ff;
+    z-index: -2;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(-2px, 2px); }
+}
+
+/* Effet de particules avancées */
+.advanced-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ff4d4d, transparent);
+    border-radius: 50%;
+    animation: advancedFloat 8s infinite linear;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.8);
+}
+
+@keyframes advancedFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+        scale: 0;
+    }
+    10% {
+        opacity: 1;
+        scale: 1;
+    }
+    90% {
+        opacity: 1;
+        scale: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(200px) rotate(360deg);
+        opacity: 0;
+        scale: 0;
+    }
+}
+
+/* Effet de scanlines */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+/* Effet de vignette */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        rgba(0, 0, 0, 0.3) 70%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Effet de distorsion au survol */
+.distort-on-hover {
+    transition: all 0.3s ease;
+}
+
+.distort-on-hover:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.05);
+    filter: hue-rotate(10deg) saturate(1.2);
+}
+
+/* Effet de texte qui tape */
+.typing-effect {
+    overflow: hidden;
+    border-right: 2px solid #ff4d4d;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #ff4d4d; }
+}
+
+/* Effet de glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+/* Effet de pulsation pour les éléments importants */
+.pulse-important {
+    animation: pulseImportant 2s ease-in-out infinite;
+}
+
+@keyframes pulseImportant {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 77, 77, 0.8);
+    }
+}
+
+/* Effet de morphing pour les boutons */
+.morph-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.morph-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.morph-button:hover::before {
+    left: 100%;
+}
+
+/* Effet de texte 3D */
+.text-3d {
+    text-shadow: 
+        0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0,0,0,.1),
+        0 0 5px rgba(0,0,0,.1),
+        0 1px 3px rgba(0,0,0,.3),
+        0 3px 5px rgba(0,0,0,.2),
+        0 5px 10px rgba(0,0,0,.25),
+        0 10px 10px rgba(0,0,0,.2),
+        0 20px 20px rgba(0,0,0,.15);
+}
+
+/* Effet de particules de feu */
+.fire-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #ff6b35, #ff4d4d, transparent);
+    border-radius: 50%;
+    animation: fireFloat 4s infinite ease-out;
+}
+
+@keyframes fireFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(80vh) translateX(10px) scale(1);
+    }
+    100% {
+        transform: translateY(-50px) translateX(50px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Effet de distorsion de l'écran */
+.screen-distortion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 77, 77, 0.03) 2px,
+        rgba(255, 77, 77, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: distortion 0.1s linear infinite;
+}
+
+@keyframes distortion {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(1px); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(-1px); }
+    100% { transform: translateX(0); }
+}
+
+/* Effet de texte holographique */
+.holographic {
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: holographicShift 3s ease-in-out infinite;
+}
+
+@keyframes holographicShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Effet de texte qui brille */
+.shine-text {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.shine-text:hover::before {
+    left: 100%;
+}
+
+/* Effet de texte qui vibre */
+.vibrate {
+    animation: vibrate 0.3s linear infinite;
+}
+
+@keyframes vibrate {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}

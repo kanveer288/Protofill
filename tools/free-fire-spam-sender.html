@@ -42,24 +42,56 @@
     <div class="max-w-2xl mx-auto px-4 sm:px-6">
       <a href="../index.html#tools" class="inline-flex items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 text-sm font-medium mb-6">← Back to Tools</a>
       <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Free Fire Spam Sender</h1>
-      <p class="text-gray-500 dark:text-gray-400 mb-6">Quick message templates — copy karke game chat me paste karein. Spam responsibly; game rules follow karein.</p>
+      <p class="text-gray-500 dark:text-gray-400 mb-6">UID aur region ke basis par backend ko requests bhejte hain. Result me success/fail aur basic profile info dikhata hai.</p>
 
       <div class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 mb-5 transition-all duration-300">
-        <label for="spam-msg" class="block font-medium text-gray-900 dark:text-white mb-2">Custom message</label>
-        <textarea id="spam-msg" rows="3" placeholder="Type your message..." class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-y transition-colors"></textarea>
-        <label for="spam-count" class="block font-medium text-gray-900 dark:text-white mt-4 mb-2">Repeat count (copy ke liye)</label>
-        <input type="number" id="spam-count" value="1" min="1" max="10" class="w-20 px-3 py-2 rounded-lg bg-gray-50 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white transition-colors">
-        <button type="button" class="mt-4 ml-2 px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold transition-colors btn-copy-msg">Copy Message</button>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label for="req-uid" class="block font-medium text-gray-900 dark:text-white mb-2">Player ID / UID</label>
+            <input type="text" id="req-uid" placeholder="e.g. 2235807298" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors">
+          </div>
+          <div>
+            <label for="req-region" class="block font-medium text-gray-900 dark:text-white mb-2">Region (custom)</label>
+            <input type="text" id="req-region" value="ind" placeholder="e.g. ind" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors">
+          </div>
+          <div class="flex items-end">
+            <button type="button" class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold transition-colors btn-start-requests">Start Requests</button>
+            <span id="req-loading" class="ml-3 hidden text-sm text-gray-500 dark:text-gray-400">Processing…</span>
+          </div>
+        </div>
       </div>
 
-      <div class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 transition-all duration-300">
-        <label class="block font-medium text-gray-900 dark:text-white mb-2">Quick templates (click to copy)</label>
-        <div class="flex flex-wrap gap-2 mt-2">
-          <button type="button" class="spam-tpl px-4 py-2 rounded-lg bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-amber-500 dark:hover:border-amber-500 transition-colors" data-msg="Squad up!">Squad up!</button>
-          <button type="button" class="spam-tpl px-4 py-2 rounded-lg bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-amber-500 dark:hover:border-amber-500 transition-colors" data-msg="Let's go!">Let's go!</button>
-          <button type="button" class="spam-tpl px-4 py-2 rounded-lg bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-amber-500 dark:hover:border-amber-500 transition-colors" data-msg="GG">GG</button>
-          <button type="button" class="spam-tpl px-4 py-2 rounded-lg bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:border-amber-500 dark:hover:border-amber-500 transition-colors" data-msg="Add me for rank">Add me for rank</button>
+      <div id="req-result" class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 transition-all duration-300 hidden">
+        <label class="block font-medium text-gray-900 dark:text-white mb-2">Result</label>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-xs text-gray-500 dark:text-gray-400">Nickname</div>
+            <div id="rr-nick" class="font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-xs text-gray-500 dark:text-gray-400">Level</div>
+            <div id="rr-level" class="font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-xs text-gray-500 dark:text-gray-400">Region</div>
+            <div id="rr-region" class="font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
         </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-xs text-gray-500 dark:text-gray-400">Likes</div>
+            <div id="rr-likes" class="font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-xs text-gray-500 dark:text-gray-400">Success</div>
+            <div id="rr-success" class="font-semibold text-green-600">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-xs text-gray-500 dark:text-gray-400">Fail</div>
+            <div id="rr-fail" class="font-semibold text-red-500">—</div>
+          </div>
+        </div>
+        <p id="rr-text" class="text-sm text-gray-500 dark:text-gray-400 mt-3"></p>
       </div>
     </div>
   </main>
@@ -67,19 +99,66 @@
   <footer class="py-6 border-t border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black text-center text-sm text-gray-500 dark:text-gray-400">© 2025 Free Fire Tools & Blog. Use responsibly.</footer>
   <script src="../js/main.js"></script>
   <script>
-    document.querySelector('.btn-copy-msg').onclick = function() {
-      var msg = document.getElementById('spam-msg').value.trim();
-      var n = parseInt(document.getElementById('spam-count').value, 10) || 1;
-      if (!msg) { alert('Pehle message type karein.'); return; }
-      var full = (msg + '\n').repeat(Math.min(n, 10)).trim();
-      navigator.clipboard.writeText(full).then(function() { alert('Message copied!'); });
-    };
-    document.querySelectorAll('.spam-tpl').forEach(function(btn) {
-      btn.onclick = function() {
-        var m = this.getAttribute('data-msg');
-        navigator.clipboard.writeText(m).then(function() { alert('Copied: ' + m); });
-      };
-    });
+    (function(){
+      var btn = document.querySelector('.btn-start-requests');
+      var uidEl = document.getElementById('req-uid');
+      var regionEl = document.getElementById('req-region');
+      var loading = document.getElementById('req-loading');
+      var box = document.getElementById('req-result');
+      var nick = document.getElementById('rr-nick');
+      var level = document.getElementById('rr-level');
+      var regionTxt = document.getElementById('rr-region');
+      var likes = document.getElementById('rr-likes');
+      var success = document.getElementById('rr-success');
+      var fail = document.getElementById('rr-fail');
+      var text = document.getElementById('rr-text');
+
+      async function fetchRequests(uid, region){
+        var base = 'http://spam.sukhdaku.qzz.io:2044/send_requests?uid=' + encodeURIComponent(uid) + '&region=' + encodeURIComponent(region);
+        try{
+          var r = await fetch(base, { mode: 'cors' });
+          if (!r.ok) throw new Error('Request failed: ' + r.status);
+          return await r.text();
+        }catch(e){
+          var r2 = await fetch('https://r.jina.ai/' + base);
+          if (!r2.ok) throw new Error('Request failed (fallback): ' + r2.status);
+          return await r2.text();
+        }
+      }
+      function parseMaybeWrappedJSON(raw){
+        try { return JSON.parse(raw); } catch(_) {}
+        var first = raw.indexOf('{'); var last = raw.lastIndexOf('}');
+        if (first !== -1 && last > first){
+          try { return JSON.parse(raw.slice(first, last+1)); } catch(_) {}
+        }
+        var m = raw.match(/\{[\s\S]*\}/); if (m){ try { return JSON.parse(m[0]); } catch(_) {} }
+        throw new Error('Invalid JSON: ' + raw.slice(0,120));
+      }
+      async function onClick(){
+        var uid = (uidEl.value || '').trim();
+        var region = (regionEl.value || 'ind').trim();
+        if (!uid){ alert('Pehle UID daalein.'); return; }
+        loading.classList.remove('hidden'); box.classList.add('hidden');
+        try{
+          var raw = await fetchRequests(uid, region);
+          var data = parseMaybeWrappedJSON(raw);
+          nick.textContent = data.nickname || data.nikname || '—';
+          level.textContent = data.level != null ? String(data.level) : '—';
+          regionTxt.textContent = (data.region || region || '').toUpperCase();
+          likes.textContent = data.likes != null ? String(data.likes) : '—';
+          success.textContent = data.success != null ? String(data.success) : '—';
+          fail.textContent = data.fail != null ? String(data.fail) : '—';
+          text.textContent = 'UID: ' + (data.uid || uid);
+          box.classList.remove('hidden');
+        }catch(e){
+          text.textContent = 'Fetch/Parse error. ' + (e && e.message ? e.message : 'Try again later.');
+          box.classList.remove('hidden');
+        }finally{
+          loading.classList.add('hidden');
+        }
+      }
+      btn && btn.addEventListener('click', onClick);
+    })();
   </script>
 </body>
 </html>

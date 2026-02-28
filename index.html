@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Tools & Blog | Player Info, Ban Check, Bio Changer</title>
+  <meta name="description" content="Free Fire tools: player info, ban check, bio changer, outfit check, visits increaser. Tips aur guides blog. Sab free.">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          animation: { 'fade-in': 'fadeIn 0.5s ease-out', 'slide-up': 'slideUp 0.4s ease-out' },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { opacity: '0', transform: 'translateY(12px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="js/theme.js"></script>
+  <style type="text/tailwindcss">
+    @layer base {
+      body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+      h1, h2, h3 { font-family: 'Outfit', system-ui, sans-serif; }
+    }
+    .glass-card {
+      @apply backdrop-blur-xl border transition-all duration-300 ease-out;
+    }
+    .glass-card-light {
+      @apply bg-white/70 border-gray-200/60 shadow-lg shadow-gray-200/50 dark:bg-transparent dark:shadow-none dark:border-transparent;
+    }
+    .glass-card-dark {
+      @apply dark:bg-black/60 dark:border-white/10 dark:shadow-2xl dark:shadow-black/40;
+    }
+    .tool-card-hover:hover .tool-icon-wrap { @apply scale-110 text-amber-500 dark:text-amber-400; }
+    .theme-toggle-btn { @apply rounded-md transition-all duration-200; }
+    .theme-toggle-btn.active { @apply bg-amber-500 text-white dark:bg-amber-500 dark:text-black; }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen antialiased">
+  <header class="sticky top-0 z-50 border-b border-gray-200/60 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-xl transition-colors duration-300" role="banner">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-base sm:text-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg transition-opacity hover:opacity-90" aria-label="Home">
+        <span class="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-amber-500/15 dark:bg-amber-500/25 text-amber-600 dark:text-amber-400 shrink-0" aria-hidden="true">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
+        </span>
+        <span>FF Tools & Blog</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-6" aria-label="Main">
+        <a href="index.html#tools" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium transition-colors duration-200">Tools</a>
+        <a href="blog.html" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium transition-colors duration-200">Blog</a>
+        <a href="index.html#about" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium transition-colors duration-200">About</a>
+      </nav>
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="flex rounded-md sm:rounded-lg bg-gray-100 dark:bg-white/10 p-0.5" role="group" aria-label="Theme">
+          <button type="button" data-theme="day" class="theme-btn theme-toggle-btn p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15" title="Light" aria-label="Light theme">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+          <button type="button" data-theme="night" class="theme-btn theme-toggle-btn p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15" title="Dark" aria-label="Dark theme">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button type="button" data-theme="system" class="theme-btn theme-toggle-btn p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15" title="System" aria-label="System theme">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+        <button type="button" class="nav-toggle sm:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors duration-200" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="main-nav-mobile hidden sm:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-black/95 backdrop-blur-xl px-4 py-3" aria-hidden="true">
+      <a href="index.html#tools" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-amber-500">Tools</a>
+      <a href="blog.html" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-amber-500">Blog</a>
+      <a href="index.html#about" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-amber-500">About</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="py-12 sm:py-16 text-center bg-gradient-to-b from-gray-100/90 dark:from-black to-gray-50 dark:to-black border-b border-gray-200/60 dark:border-white/10 transition-colors duration-300" aria-labelledby="hero-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <h1 id="hero-heading" class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 animate-fade-in">Free Fire Tools & Guides</h1>
+        <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.1s">Player info, bio changer, ban check, outfit checker aur zyada — sab kuch yahin.</p>
+      </div>
+    </section>
+
+    <section id="tools" class="py-12 sm:py-16 scroll-mt-6" aria-labelledby="tools-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <h2 id="tools-heading" class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Free Fire Tools</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" role="list">
+          <a href="tools/free-fire-info.html" class="glass-card glass-card-light dark:glass-card-dark rounded-2xl p-6 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 hover:border-amber-400/40 dark:hover:border-amber-400/30 tool-card-hover group" role="listitem">
+            <span class="tool-icon-wrap inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4 transition-transform duration-300" aria-hidden="true">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Free Fire Info</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Player ID se profile, stats aur rank check karein</p>
+          </a>
+          <a href="tools/free-fire-change-bio.html" class="glass-card glass-card-light dark:glass-card-dark rounded-2xl p-6 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 hover:border-amber-400/40 dark:hover:border-amber-400/30 tool-card-hover group" role="listitem">
+            <span class="tool-icon-wrap inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4 transition-transform duration-300" aria-hidden="true">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.897L6 18l.8-2.685a4.5 4.5 0 011.897-1.897l8.932-8.931zm0 0L19.5 7.125"/></svg>
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Free Fire Change Bio</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Cool bio text aur symbols ke saath profile update karein</p>
+          </a>
+          <a href="tools/free-fire-ban-check.html" class="glass-card glass-card-light dark:glass-card-dark rounded-2xl p-6 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 hover:border-amber-400/40 dark:hover:border-amber-400/30 tool-card-hover group" role="listitem">
+            <span class="tool-icon-wrap inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4 transition-transform duration-300" aria-hidden="true">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Free Fire Ban Check</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Account ban status verify karein</p>
+          </a>
+          <a href="tools/free-fire-outfit-check.html" class="glass-card glass-card-light dark:glass-card-dark rounded-2xl p-6 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 hover:border-amber-400/40 dark:hover:border-amber-400/30 tool-card-hover group" role="listitem">
+            <span class="tool-icon-wrap inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4 transition-transform duration-300" aria-hidden="true">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Free Fire Outfit Check</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Character outfits aur skins dekhne ke liye</p>
+          </a>
+          <a href="tools/free-fire-visits-increaser.html" class="glass-card glass-card-light dark:glass-card-dark rounded-2xl p-6 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 hover:border-amber-400/40 dark:hover:border-amber-400/30 tool-card-hover group" role="listitem">
+            <span class="tool-icon-wrap inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4 transition-transform duration-300" aria-hidden="true">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Free Fire Visits Increaser</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Profile visits badhane ke liye tool</p>
+          </a>
+          <a href="tools/free-fire-spam-sender.html" class="glass-card glass-card-light dark:glass-card-dark rounded-2xl p-6 hover:scale-[1.02] hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-amber-500/5 hover:border-amber-400/40 dark:hover:border-amber-400/30 tool-card-hover group" role="listitem">
+            <span class="tool-icon-wrap inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4 transition-transform duration-300" aria-hidden="true">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Free Fire Spam Sender</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Quick message sender (use responsibly)</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog-preview" class="py-12 sm:py-16 border-t border-gray-200/60 dark:border-white/10 transition-colors duration-300" aria-labelledby="blog-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <h2 id="blog-heading" class="text-2xl font-bold text-gray-900 dark:text-white">Latest Blogs</h2>
+          <a href="blog.html" class="inline-flex items-center px-4 py-2 rounded-xl border-2 border-amber-500 text-amber-600 dark:text-amber-400 font-semibold hover:bg-amber-500 hover:text-white dark:hover:text-gray-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:focus:ring-offset-black">View All</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
+          <article class="glass-card glass-card-light dark:glass-card-dark rounded-2xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300" role="listitem">
+            <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200/80 dark:bg-black overflow-hidden focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-inset">
+              <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Rank+Tips" alt="Rank push tips" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            </a>
+            <div class="p-4">
+              <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Tips</span>
+              <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400 focus:outline-none focus:underline transition-colors">Free Fire me rank push karne ke tips</a></h3>
+              <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Season rank push ke liye best strategies aur character picks.</p>
+              <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline focus:outline-none focus:underline">Read more →</a>
+            </div>
+          </article>
+          <article class="glass-card glass-card-light dark:glass-card-dark rounded-2xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300" role="listitem">
+            <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200/80 dark:bg-black overflow-hidden focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-inset">
+              <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Events" alt="Event rewards" class="w-full h-full object-cover transition-transform duration-500" loading="lazy">
+            </a>
+            <div class="p-4">
+              <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Guide</span>
+              <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400 focus:outline-none focus:underline transition-colors">New event rewards kaise claim karein</a></h3>
+              <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Latest events aur free rewards claim karne ka step-by-step guide.</p>
+              <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline focus:outline-none focus:underline">Read more →</a>
+            </div>
+          </article>
+          <article class="glass-card glass-card-light dark:glass-card-dark rounded-2xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300" role="listitem">
+            <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200/80 dark:bg-black overflow-hidden focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-inset">
+              <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Meta" alt="Meta weapons" class="w-full h-full object-cover transition-transform duration-500" loading="lazy">
+            </a>
+            <div class="p-4">
+              <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Meta</span>
+              <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400 focus:outline-none focus:underline transition-colors">Current meta weapons 2025</a></h3>
+              <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Abhi ke patch me best guns aur loadout suggestions.</p>
+              <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline focus:outline-none focus:underline">Read more →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-12 sm:py-16 border-t border-gray-200/60 dark:border-white/10 transition-colors duration-300" aria-labelledby="about-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <h2 id="about-heading" class="text-2xl font-bold text-gray-900 dark:text-white mb-4">About</h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-2xl">Yeh site Free Fire players ke liye tools aur blogs provide karti hai. Sab tools free hain. Blog section me tips, guides aur updates share kiye jate hain.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-6 border-t border-gray-200/60 dark:border-white/10 bg-gray-100/50 dark:bg-black transition-colors duration-300" role="contentinfo">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      © 2025 Free Fire Tools & Blog. Sab tools educational purpose ke liye hain.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

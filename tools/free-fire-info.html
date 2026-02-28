@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Info - Player ID Check</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../js/theme.js"></script>
+  <style type="text/tailwindcss">@layer base { body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; } h1, h2, h3 { font-family: 'Outfit', system-ui, sans-serif; } } .theme-toggle-btn.active { @apply bg-amber-500 text-white dark:bg-amber-500 dark:text-black; }</style>
+</head>
+<body class="bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen antialiased">
+  <header class="sticky top-0 z-50 border-b border-gray-200/60 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-xl transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <a href="../index.html" class="flex items-center gap-2 font-bold text-base sm:text-lg text-gray-900 dark:text-white">
+        <span class="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-amber-500/15 dark:bg-amber-500/25 text-amber-600 dark:text-amber-400 shrink-0" aria-hidden="true">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
+        </span>
+        <span>FF Tools & Blog</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-6">
+        <a href="../index.html#tools" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium">Tools</a>
+        <a href="../blog.html" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium">Blog</a>
+      </nav>
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="flex rounded-md sm:rounded-lg bg-gray-100 dark:bg-white/10 p-0.5" role="group" aria-label="Theme">
+          <button type="button" data-theme="day" class="theme-btn theme-toggle-btn p-1 sm:p-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15" title="Light"><svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+          <button type="button" data-theme="night" class="theme-btn theme-toggle-btn p-1 sm:p-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15" title="Dark"><svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+          <button type="button" data-theme="system" class="theme-btn theme-toggle-btn p-1 sm:p-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15" title="System"><svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></button>
+        </div>
+        <button type="button" class="nav-toggle sm:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="main-nav-mobile hidden sm:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-black/95 backdrop-blur-xl px-4 py-3">
+      <a href="../index.html#tools" class="block py-2 text-gray-700 dark:text-gray-300">Tools</a>
+      <a href="../blog.html" class="block py-2 text-gray-700 dark:text-gray-300">Blog</a>
+    </div>
+  </header>
+
+  <main class="py-8 sm:py-12">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+      <a href="../index.html#tools" class="inline-flex items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 text-sm font-medium mb-6">← Back to Tools</a>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Free Fire Info</h1>
+      <p class="text-gray-500 dark:text-gray-400 mb-6">Player ID daal kar profile, stats aur rank check karein.</p>
+
+      <div class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 mb-5 transition-all duration-300">
+        <label for="player-id" class="block font-medium text-gray-900 dark:text-white mb-2">Player ID</label>
+        <input type="text" id="player-id" placeholder="e.g. 1234567890" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors">
+        <div class="flex items-center gap-2 mt-4">
+          <button type="button" class="px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold transition-colors btn-primary">Check Info</button>
+          <span id="loading" class="hidden text-sm text-gray-500 dark:text-gray-400">Loading…</span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 hidden" id="result-box">
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-4">Result</h3>
+        <div id="summary" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Nickname</div>
+            <div id="nickname" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Level</div>
+            <div id="level" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Region</div>
+            <div id="region" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+        </div>
+        <div id="details" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">BR Rank</div>
+            <div id="rank" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">CS Rank</div>
+            <div id="csRank" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Likes</div>
+            <div id="likes" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Credit Score</div>
+            <div id="creditScore" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Last Login</div>
+            <div id="lastLogin" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400">Prime Level</div>
+            <div id="primeLevel" class="text-lg font-semibold text-gray-900 dark:text-white">—</div>
+          </div>
+        </div>
+        <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="font-semibold text-gray-900 dark:text-white">Equipped Items</h4>
+            <span id="items-count" class="text-sm text-gray-500 dark:text-gray-400"></span>
+          </div>
+          <div id="equipped-list" class="grid grid-cols-3 sm:grid-cols-6 gap-3"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 mt-4">
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Guild</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Clan Name</div>
+                <div id="clanName" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Clan Level</div>
+                <div id="clanLevel" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Members</div>
+                <div id="clanMembers" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Guild Owner</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Nickname</div>
+                <div id="ownerNick" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Level</div>
+                <div id="ownerLevel" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">BR Rank</div>
+                <div id="ownerRank" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Pet</div>
+            <div class="flex items-center gap-4">
+              <div class="w-20 h-20 rounded-xl bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 overflow-hidden flex items-center justify-center">
+                <img id="petImg" alt="Pet" class="w-full h-full object-contain p-2 hidden">
+                <span id="petFallback" class="text-[11px] text-gray-500"></span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">ID</div>
+                  <div id="petId" class="font-semibold text-gray-900 dark:text-white">—</div>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">Level</div>
+                  <div id="petLevel" class="font-semibold text-gray-900 dark:text-white">—</div>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">Skin</div>
+                  <div id="petSkin" class="font-semibold text-gray-900 dark:text-white">—</div>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">Skill</div>
+                  <div id="petSkill" class="font-semibold text-gray-900 dark:text-white">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-4">
+            <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Social</div>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 mb-3">
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Gender</div>
+                <div id="socGender" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Language</div>
+                <div id="socLang" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Active Time</div>
+                <div id="socTime" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">Mode</div>
+                <div id="socMode" class="font-semibold text-gray-900 dark:text-white">—</div>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Signature</div>
+              <div id="socSign" class="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300">—</div>
+            </div>
+          </div>
+        </div>
+        <p id="result-text" class="text-sm text-gray-500 dark:text-gray-400 mt-3"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-6 border-t border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black text-center text-sm text-gray-500 dark:text-gray-400">© 2025 Free Fire Tools & Blog.</footer>
+  <script src="../js/main.js"></script>
+  <script>
+    (function(){
+      var btn = document.querySelector('.btn-primary');
+      var idInput = document.getElementById('player-id');
+      var box = document.getElementById('result-box');
+      var text = document.getElementById('result-text');
+      var loading = document.getElementById('loading');
+      var nickname = document.getElementById('nickname');
+      var level = document.getElementById('level');
+      var region = document.getElementById('region');
+      var list = document.getElementById('equipped-list');
+      var count = document.getElementById('items-count');
+      var rank = document.getElementById('rank');
+      var csRank = document.getElementById('csRank');
+      var likes = document.getElementById('likes');
+      var creditScore = document.getElementById('creditScore');
+      var lastLogin = document.getElementById('lastLogin');
+      var primeLevel = document.getElementById('primeLevel');
+      var clanName = document.getElementById('clanName');
+      var clanLevel = document.getElementById('clanLevel');
+      var clanMembers = document.getElementById('clanMembers');
+      var ownerNick = document.getElementById('ownerNick');
+      var ownerLevel = document.getElementById('ownerLevel');
+      var ownerRank = document.getElementById('ownerRank');
+      var petImg = document.getElementById('petImg');
+      var petFallback = document.getElementById('petFallback');
+      var petId = document.getElementById('petId');
+      var petLevel = document.getElementById('petLevel');
+      var petSkin = document.getElementById('petSkin');
+      var petSkill = document.getElementById('petSkill');
+      var socGender = document.getElementById('socGender');
+      var socLang = document.getElementById('socLang');
+      var socTime = document.getElementById('socTime');
+      var socMode = document.getElementById('socMode');
+      var socSign = document.getElementById('socSign');
+
+      function fmt(ts){
+        if(!ts) return '—';
+        var n = Number(ts);
+        if (String(n).length <= 12) n = n*1000;
+        try { return new Date(n).toLocaleString(); } catch(e) { return String(ts); }
+      }
+
+      async function onClick(){
+        var uid = idInput.value.trim();
+        if(!uid){ text.textContent = 'Please enter a Player ID.'; box.classList.remove('hidden'); return; }
+        loading.classList.remove('hidden');
+        text.textContent = '';
+        nickname.textContent = '—';
+        level.textContent = '—';
+        region.textContent = '—';
+        rank.textContent = '—';
+        csRank.textContent = '—';
+        likes.textContent = '—';
+        creditScore.textContent = '—';
+        lastLogin.textContent = '—';
+        primeLevel.textContent = '—';
+        list.innerHTML = '';
+        count.textContent = '';
+        try{
+          var res = await fetch('https://free-fire-info-five.vercel.app/info?uid='+encodeURIComponent(uid), {mode:'cors'});
+          var data = await res.json();
+          var pd = data.playerData || {};
+          var prof = data.profileInfo || {};
+          var cs = data.creditScoreInfo || {};
+          var guild = data.guildInfo || {};
+          var owner = data.guildOwnerInfo || {};
+          var pet = data.petInfo || {};
+          var soc = data.socialInfo || {};
+          nickname.textContent = pd.nickname || 'Unknown';
+          level.textContent = pd.level != null ? String(pd.level) : '—';
+          region.textContent = pd.region || '—';
+          rank.textContent = pd.rank != null ? String(pd.rank) : '—';
+          csRank.textContent = pd.csRank != null ? String(pd.csRank) : '—';
+          likes.textContent = pd.liked != null ? String(pd.liked) : '—';
+          creditScore.textContent = cs.creditScore != null ? String(cs.creditScore) : '—';
+          lastLogin.textContent = fmt(pd.lastLoginAt);
+          primeLevel.textContent = (pd.primeLevel && pd.primeLevel.primeLevel) ? pd.primeLevel.primeLevel : '—';
+          clanName.textContent = guild.clanName || '—';
+          clanLevel.textContent = guild.clanLevel != null ? String(guild.clanLevel) : '—';
+          clanMembers.textContent = (guild.memberNum != null && guild.capacity != null) ? (guild.memberNum + ' / ' + guild.capacity) : '—';
+          ownerNick.textContent = owner.nickname || '—';
+          ownerLevel.textContent = owner.level != null ? String(owner.level) : '—';
+          ownerRank.textContent = owner.rank != null ? String(owner.rank) : '—';
+          petId.textContent = pet.id != null ? String(pet.id) : '—';
+          petLevel.textContent = pet.level != null ? String(pet.level) : '—';
+          petSkin.textContent = pet.skinId != null ? String(pet.skinId) : '—';
+          petSkill.textContent = pet.selectedSkillId != null ? String(pet.selectedSkillId) : '—';
+          socGender.textContent = soc.gender || '—';
+          socLang.textContent = soc.language || '—';
+          socTime.textContent = soc.timeActive || '—';
+          socMode.textContent = soc.modePrefer || '—';
+          socSign.textContent = soc.signature || '—';
+          petImg.classList.add('hidden');
+          petFallback.textContent = '';
+          if (pet.skinId || pet.id){
+            var idForImg = pet.skinId || pet.id;
+            var directPet = 'https://getitems.thug4ff.com/item?id='+idForImg;
+            var triedJsonPet = false;
+            petImg.onerror = async function(){
+              if (triedJsonPet){
+                petImg.classList.add('hidden');
+                petFallback.textContent = String(idForImg);
+                return;
+              }
+              triedJsonPet = true;
+              try{
+                var r = await fetch('https://getitems.thug4ff.com/item?id='+idForImg, {mode:'cors'});
+                var ct = r.headers.get('content-type') || '';
+                if (ct.includes('application/json')){
+                  var d = await r.json();
+                  var u = d.icon || d.image || d.img || d.url || d.iconUrl || d.Icon || null;
+                  if (u && u.startsWith('//')) u = 'https:'+u;
+                  if (u){ petImg.src = u; petImg.classList.remove('hidden'); return; }
+                }
+              }catch(e){}
+              petImg.classList.add('hidden');
+              petFallback.textContent = String(idForImg);
+            };
+            petImg.src = directPet;
+            petImg.classList.remove('hidden');
+          }
+          var items = prof.equippedItems || [];
+          count.textContent = items.length ? items.length + ' items' : '';
+          var limited = items.slice(0, 12);
+          for (var i=0;i<limited.length;i++){
+            var id = limited[i];
+            var c = document.createElement('div');
+            c.className = 'aspect-square rounded-xl bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-white/10 overflow-hidden flex items-center justify-center';
+            var img = new Image();
+            img.loading = 'lazy';
+            img.alt = 'Item '+id;
+            img.className = 'w-full h-full object-contain p-2';
+            var direct = 'https://getitems.thug4ff.com/item?id='+id;
+            var triedJson = false;
+            img.onerror = async function(el, itemId){
+              return async function(){
+                if (triedJson) {
+                  c.innerHTML = '';
+                  var span = document.createElement('span');
+                  span.className = 'text-[11px] text-gray-500';
+                  span.textContent = itemId;
+                  c.appendChild(span);
+                  return;
+                }
+                triedJson = true;
+                try{
+                  var r = await fetch('https://getitems.thug4ff.com/item?id='+itemId, {mode:'cors'});
+                  var ct = r.headers.get('content-type') || '';
+                  if (ct.includes('application/json')){
+                    var d = await r.json();
+                    var u = d.icon || d.image || d.img || d.url || d.iconUrl || d.Icon || null;
+                    if (u && u.startsWith('//')) u = 'https:'+u;
+                    if (u){ el.src = u; return; }
+                  }
+                }catch(e){}
+                c.innerHTML = '';
+                var s = document.createElement('span');
+                s.className = 'text-[11px] text-gray-500';
+                s.textContent = itemId;
+                c.appendChild(s);
+              }
+            }(img, id);
+            img.src = direct;
+            c.appendChild(img);
+            list.appendChild(c);
+          }
+          text.textContent = 'Account ID: ' + (pd.accountId || uid);
+          box.classList.remove('hidden');
+        }catch(err){
+          text.textContent = 'Fetch error. Thodi der baad try karein.';
+          box.classList.remove('hidden');
+        }finally{
+          loading.classList.add('hidden');
+        }
+      }
+      btn.addEventListener('click', onClick);
+    })();
+  </script>
+</body>
+</html>

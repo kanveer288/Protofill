@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Free Fire Tips & Guides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="js/theme.js"></script>
+  <style type="text/tailwindcss">
+    @layer base { body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; } h1, h2, h3 { font-family: 'Outfit', system-ui, sans-serif; } }
+    .theme-toggle-btn.active { @apply bg-amber-500 text-white dark:bg-amber-500 dark:text-black; }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen antialiased">
+  <header class="sticky top-0 z-50 border-b border-gray-200/60 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-xl transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-base sm:text-lg text-gray-900 dark:text-white">
+        <span class="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-amber-500/15 dark:bg-amber-500/25 text-amber-600 dark:text-amber-400 shrink-0" aria-hidden="true">
+          <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>
+        </span>
+        <span>FF Tools & Blog</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-6">
+        <a href="index.html#tools" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium">Tools</a>
+        <a href="blog.html" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium">Blog</a>
+        <a href="index.html#about" class="text-gray-600 dark:text-gray-400 hover:text-amber-500 dark:hover:text-amber-400 font-medium">About</a>
+      </nav>
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="flex rounded-md sm:rounded-lg bg-gray-100 dark:bg-white/10 p-0.5" role="group" aria-label="Theme">
+          <button type="button" data-theme="day" class="theme-btn theme-toggle-btn rounded-md p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15 transition-colors" title="Light" aria-label="Light theme">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
+          <button type="button" data-theme="night" class="theme-btn theme-toggle-btn rounded-md p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15 transition-colors" title="Dark" aria-label="Dark theme">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button type="button" data-theme="system" class="theme-btn theme-toggle-btn rounded-md p-1 sm:p-1.5 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-gray-200 dark:hover:bg-white/15 transition-colors" title="System" aria-label="System theme">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+        <button type="button" class="nav-toggle sm:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="main-nav-mobile hidden sm:hidden border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-black/95 backdrop-blur-xl px-4 py-3">
+      <a href="index.html#tools" class="block py-2 text-gray-700 dark:text-gray-300">Tools</a>
+      <a href="blog.html" class="block py-2 text-gray-700 dark:text-gray-300">Blog</a>
+      <a href="index.html#about" class="block py-2 text-gray-700 dark:text-gray-300">About</a>
+    </div>
+  </header>
+
+  <main class="py-8 sm:py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog</h1>
+      <p class="text-gray-600 dark:text-gray-300 mb-8">Free Fire tips, guides, meta updates aur event news — yahan sab milta hai.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300">
+          <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200 dark:bg-black overflow-hidden">
+            <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Rank+Tips" alt="Rank push tips" class="w-full h-full object-cover">
+          </a>
+          <div class="p-4">
+            <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Tips</span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400">Free Fire me rank push karne ke tips</a></h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Season rank push ke liye best strategies aur character picks.</p>
+            <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline">Read more →</a>
+          </div>
+        </article>
+          <article class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300">
+          <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200 dark:bg-black overflow-hidden">
+            <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Events" alt="Event rewards" class="w-full h-full object-cover">
+          </a>
+          <div class="p-4">
+            <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Guide</span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400">New event rewards kaise claim karein</a></h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Latest events aur free rewards claim karne ka step-by-step guide.</p>
+            <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline">Read more →</a>
+          </div>
+        </article>
+          <article class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300">
+          <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200 dark:bg-black overflow-hidden">
+            <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Meta" alt="Meta weapons" class="w-full h-full object-cover">
+          </a>
+          <div class="p-4">
+            <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Meta</span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400">Current meta weapons 2025</a></h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Abhi ke patch me best guns aur loadout suggestions.</p>
+            <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline">Read more →</a>
+          </div>
+        </article>
+          <article class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300">
+          <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200 dark:bg-black overflow-hidden">
+            <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Characters" alt="Character combo" class="w-full h-full object-cover">
+          </a>
+          <div class="p-4">
+            <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Characters</span>
+            <h3 class="font-semibold text-gray-900 dark:text-white mt-1 mb-2"><a href="blog/post-example.html" class="hover:text-amber-500 dark:hover:text-amber-400">Best character combination for squad</a></h3>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Squad me kis character ko kis ke saath use karein — full combo guide.</p>
+            <a href="blog/post-example.html" class="text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline">Read more →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-6 border-t border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center text-sm text-gray-500 dark:text-gray-400">© 2025 Free Fire Tools & Blog.</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -47,12 +47,30 @@
       <div class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 mb-5 transition-all duration-300">
         <label for="outfit-player-id" class="block font-medium text-gray-900 dark:text-white mb-2">Player ID</label>
         <input type="text" id="outfit-player-id" placeholder="Enter Player ID" class="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-black/40 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors">
-        <button type="button" class="mt-4 px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold transition-colors btn-outfit">Check Outfits</button>
+        <div class="flex flex-wrap items-center gap-3 mt-4">
+          <div class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <span class="font-medium">Background:</span>
+            <label class="inline-flex items-center gap-1"><input type="radio" name="bg" value="1" class="bg-radio" checked><span>1</span></label>
+            <label class="inline-flex items-center gap-1"><input type="radio" name="bg" value="2" class="bg-radio"><span>2</span></label>
+            <label class="inline-flex items-center gap-1"><input type="radio" name="bg" value="3" class="bg-radio"><span>3</span></label>
+          </div>
+          <button type="button" class="px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold transition-colors btn-outfit">Check Outfits</button>
+          <span id="outfit-loading" class="hidden text-sm text-gray-500 dark:text-gray-400">Loading…</span>
+        </div>
       </div>
 
       <div class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl p-5 hidden" id="outfit-result">
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Result</h3>
-        <p id="outfit-result-text" class="text-gray-500 dark:text-gray-400"></p>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Generated Image</h3>
+        <div class="flex items-center gap-4">
+          <div class="rounded-xl border border-gray-200/60 dark:border-white/10 bg-white/60 dark:bg-black/40 p-3">
+            <img id="of-image" alt="Outfit image" class="max-w-full h-auto rounded-lg hidden">
+            <span id="of-image-fallback" class="text-sm text-gray-500 dark:text-gray-400"></span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <a id="of-download" href="#" download="outfit.png" class="inline-flex items-center px-4 py-2 rounded-lg border-2 border-amber-500 text-amber-600 dark:text-amber-400 font-semibold hover:bg-amber-500 hover:text-white dark:hover:text-gray-900 transition-all duration-300">Download</a>
+            <p id="outfit-result-text" class="text-sm text-gray-500 dark:text-gray-400"></p>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -60,14 +78,55 @@
   <footer class="py-6 border-t border-gray-200 dark:border-white/10 bg-gray-100/50 dark:bg-black text-center text-sm text-gray-500 dark:text-gray-400">© 2025 Free Fire Tools & Blog.</footer>
   <script src="../js/main.js"></script>
   <script>
-    document.querySelector('.btn-outfit').onclick = function() {
-      var id = document.getElementById('outfit-player-id').value.trim();
+    (function(){
+      var btn = document.querySelector('.btn-outfit');
+      var input = document.getElementById('outfit-player-id');
       var box = document.getElementById('outfit-result');
+      var loading = document.getElementById('outfit-loading');
       var text = document.getElementById('outfit-result-text');
-      if (!id) { text.textContent = 'Please enter Player ID.'; box.classList.remove('hidden'); return; }
-      text.textContent = 'Player ID: ' + id + ' — (Demo: Outfit/skin API integrate karke yahan list aayegi.)';
-      box.classList.remove('hidden');
-    };
+      var img = document.getElementById('of-image');
+      var fallback = document.getElementById('of-image-fallback');
+      function getBg(){
+        var el = document.querySelector('input[name="bg"]:checked');
+        return el ? el.value : '1';
+        }
+      async function onClick(){
+        var uid = (input.value || '').trim();
+        text.textContent = ''; fallback.textContent = ''; img.classList.add('hidden');
+        if (!/^\d+$/.test(uid)){ text.textContent = 'UID must be numeric.'; box.classList.remove('hidden'); return; }
+        var bg = getBg();
+        var url = 'https://outfit.sukhdaku.qzz.io/api/v1/profile?uid=' + encodeURIComponent(uid) + '&bg=' + encodeURIComponent(bg);
+        loading.classList.remove('hidden');
+        try{
+          var res = await fetch(url, { mode: 'cors' });
+          var ct = res.headers.get('content-type') || '';
+          if (!res.ok){ throw new Error('Request failed: ' + res.status); }
+          if (ct.startsWith('image/')){
+            var blob = await res.blob();
+            var obj = URL.createObjectURL(blob);
+            img.src = obj;
+            img.classList.remove('hidden');
+            var a = document.getElementById('of-download');
+            a.href = obj;
+            text.textContent = 'UID: ' + uid + ' • BG: ' + bg;
+          } else {
+            var t = await res.text();
+            try{
+              var j = JSON.parse(t);
+              if (j && j.error){ throw new Error(j.error); }
+            }catch(_) {}
+            throw new Error('Unexpected response.');
+          }
+          box.classList.remove('hidden');
+        }catch(e){
+          fallback.textContent = (e && e.message) ? e.message : 'Error occurred.';
+          box.classList.remove('hidden');
+        }finally{
+          loading.classList.add('hidden');
+        }
+      }
+      btn.addEventListener('click', onClick);
+    })();
   </script>
 </body>
 </html>

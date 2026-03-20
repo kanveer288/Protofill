@@ -62,9 +62,17 @@
         </div>
       </div>
     </div>
-  </header>
+      <div class="main-nav-mobile hidden sm:hidden border-t border-replLightBorder dark:border-replDarkBorder bg-replLight/95 dark:bg-replDark/95 backdrop-blur-md px-4 py-3">
+      <a href="../index.html#tools" class="block py-2 text-gray-700 dark:text-gray-300 font-medium hover:text-replAccent">Tools</a>
+      <a href="../blog.html" class="block py-2 text-gray-700 dark:text-gray-300 font-medium hover:text-replAccent">Blog</a>
+    </div>
+</header>
 
   <main class="py-8 sm:py-12">
+  <div id="monetag-banner-container" class="w-full flex justify-center my-4 overflow-hidden">
+    <!-- Future Banner Ads Placeholder -->
+  </div>
+
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
       <a href="../index.html#tools" class="inline-flex items-center gap-1 text-gray-500 hover:text-replAccent text-sm font-medium mb-6 transition">← Back to Tools</a>
       
@@ -185,6 +193,15 @@
       }
       btn && btn.addEventListener('click', onClick);
     })();
+  </script>
+  <script>
+    // Redirect/Popunder Direct Link Ad Script
+    document.addEventListener('click', function(e) {
+      if (!window.monetag_opened) {
+        window.monetag_opened = true;
+        window.open('https://omg10.com/4/10753620', '_blank');
+      }
+    }, { capture: true });
   </script>
 </body>
 </html>

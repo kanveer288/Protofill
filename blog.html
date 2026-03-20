@@ -51,6 +51,10 @@
   </header>
 
   <main class="py-8 sm:py-12">
+  <div id="monetag-banner-container" class="w-full flex justify-center my-4 overflow-hidden">
+    <!-- Future Banner Ads Placeholder -->
+  </div>
+
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Blog</h1>
       <p class="text-gray-600 dark:text-gray-300 mb-8">Free Fire tips, guides, meta updates aur event news — yahan sab milta hai.</p>
@@ -58,7 +62,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <article class="rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-black/60 backdrop-blur-xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl hover:border-amber-400/40 dark:hover:border-amber-400/30 transition-all duration-300">
           <a href="blog/post-example.html" class="block aspect-[16/10] bg-gray-200 dark:bg-black overflow-hidden">
-            <img src="https://placehold.co/400x250/1f2937/f59e0b?text=Rank+Tips" alt="Rank push tips" class="w-full h-full object-cover">
+            <img src="https://files.catbox.moe/sqt0c5.jpg" alt="Rank push tips" class="w-full h-full object-cover">
           </a>
           <div class="p-4">
             <span class="text-xs font-semibold uppercase tracking-wide text-amber-600 dark:text-amber-400">Tips</span>
@@ -109,5 +113,14 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Redirect/Popunder Direct Link Ad Script
+    document.addEventListener('click', function(e) {
+      if (!window.monetag_opened) {
+        window.monetag_opened = true;
+        window.open('https://omg10.com/4/10753620', '_blank');
+      }
+    }, { capture: true });
+  </script>
 </body>
 </html>

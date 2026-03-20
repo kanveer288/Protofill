@@ -330,7 +330,7 @@
           petFallback.textContent = '';
           if (pet.skinId || pet.id){
             var idForImg = pet.skinId || pet.id;
-            var directPet = 'http://87.106.82.84:14329/item?id='+idForImg;
+            var directPet = 'https://items-gold.vercel.app/item?id='+idForImg;
             var triedJsonPet = false;
             petImg.onerror = async function(){
               if (triedJsonPet){
@@ -340,7 +340,7 @@
               }
               triedJsonPet = true;
               try{
-                var r = await fetch('http://87.106.82.84:14329/item?id='+idForImg, {mode:'cors'});
+                var r = await fetch('https://items-gold.vercel.app/item?id='+idForImg, {mode:'cors'});
                 var ct = r.headers.get('content-type') || '';
                 if (ct.includes('application/json')){
                   var d = await r.json();
@@ -366,7 +366,7 @@
             img.loading = 'lazy';
             img.alt = 'Item '+id;
             img.className = 'w-full h-full object-contain p-2';
-            var direct = 'http://87.106.82.84:14329/item?id='+id;
+            var direct = 'https://items-gold.vercel.app/item?id='+id;
             var triedJson = false;
             img.onerror = async function(el, itemId){
               return async function(){
@@ -380,7 +380,7 @@
                 }
                 triedJson = true;
                 try{
-                  var r = await fetch('http://87.106.82.84:14329/item?id='+itemId, {mode:'cors'});
+                  var r = await fetch('https://items-gold.vercel.app/item?id='+itemId, {mode:'cors'});
                   var ct = r.headers.get('content-type') || '';
                   if (ct.includes('application/json')){
                     var d = await r.json();

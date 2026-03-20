@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Access Token - Free Fire Tools</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            replLight: '#FBFCFD',
+            replLightSurface: '#FFFFFF',
+            replLightBorder: '#E5E7EB',
+            replLightHover: '#F3F4F6',
+            replDark: '#0E1525',
+            replDarkSurface: '#1C2333',
+            replDarkBorder: '#2B3245',
+            replDarkHover: '#2C334A',
+            replAccent: '#0F87FF',
+            facebook: '#1877F2',
+            google: '#DB4437',
+            apple: '#000000',
+            vk: '#4C75A3'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Outfit"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="../js/theme.js"></script>
+  <style type="text/tailwindcss">
+    @layer base {
+      body { @apply bg-replLight text-gray-900 dark:bg-replDark dark:text-gray-100 min-h-screen antialiased transition-colors duration-300; }
+      h1, h2, h3 { @apply font-display tracking-tight; }
+    }
+    .repl-card {
+      @apply bg-replLightSurface border border-replLightBorder rounded-xl shadow-sm dark:bg-replDarkSurface dark:border-replDarkBorder;
+    }
+    .repl-inner-card {
+      @apply border border-replLightBorder dark:border-replDarkBorder bg-gray-50 dark:bg-replDark p-4 rounded-xl;
+    }
+    .theme-toggle-btn.active { @apply bg-gray-200 text-gray-900 dark:bg-replDarkBorder dark:text-white; }
+    
+    /* Professional Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      @apply bg-transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(155, 155, 155, 0.5);
+      border-radius: 20px;
+      border: 3px solid transparent;
+      background-clip: content-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(155, 155, 155, 0.8);
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+  <meta name="monetag" content="02fb45f72d74cb3e0e8645f706c751af">
+</head>
+<body>
+  <header class="sticky top-0 z-50 border-b border-replLightBorder dark:border-replDarkBorder bg-replLight/90 dark:bg-replDark/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <a href="../index.html" class="flex items-center gap-2 font-bold text-gray-900 dark:text-white">
+        <span class="flex items-center justify-center w-8 h-8 rounded bg-replAccent text-white shrink-0 font-display font-bold text-lg">FF</span>
+        <span class="hidden sm:inline">Tools & Blog</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1">
+          <div class="flex rounded-md bg-gray-100 dark:bg-replDarkSurface border border-gray-200 dark:border-replDarkBorder p-0.5" role="group">
+            <button type="button" data-theme="day" class="theme-btn theme-toggle-btn p-1.5 rounded text-gray-500 hover:text-gray-900 dark:hover:text-white"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+            <button type="button" data-theme="night" class="theme-btn theme-toggle-btn p-1.5 rounded text-gray-500 hover:text-gray-900 dark:hover:text-white"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+<main class="py-8 sm:py-12">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <a href="../index.html#tools" class="inline-flex items-center gap-1 text-gray-500 hover:text-replAccent text-sm font-medium mb-6 transition">← Back to Tools</a>
+      
+      <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Get Access Token</h1>
+        <p class="text-gray-500 dark:text-gray-400 mb-6 text-sm">Apne account se Login karke Access Token nikalye aur input box me link paste karke token extract karein.</p>
+        
+        <div class="repl-card p-6 mb-6">
+          <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">Step 1: Choose Login Platform</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-2">
+            <button onclick="openAuth(3)" class="flex flex-col items-center justify-center p-4 rounded-xl border border-replLightBorder dark:border-replDarkBorder hover:bg-facebook/5 dark:hover:bg-facebook/10 hover:border-facebook/30 transition-all group">
+              <div class="w-10 h-10 rounded-full bg-[#1877F2] text-white flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">Facebook</span>
+            </button>
+
+            <button onclick="openAuth(8)" class="flex flex-col items-center justify-center p-4 rounded-xl border border-replLightBorder dark:border-replDarkBorder hover:bg-google/5 dark:hover:bg-google/10 hover:border-google/30 transition-all group">
+              <div class="w-10 h-10 rounded-full bg-white text-white flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform border border-gray-100">
+                <svg class="w-6 h-6" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4c-7.539 0-14.113 4.141-17.694 10.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">Google</span>
+            </button>
+
+            <button onclick="openAuth(10)" class="flex flex-col items-center justify-center p-4 rounded-xl border border-replLightBorder dark:border-replDarkBorder hover:bg-apple/5 dark:hover:bg-apple/10 hover:border-apple/30 transition-all group">
+              <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 384 512">
+                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                </svg>
+              </div>
+              <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">Apple</span>
+            </button>
+
+            <button onclick="openAuth(5)" class="flex flex-col items-center justify-center p-4 rounded-xl border border-replLightBorder dark:border-replDarkBorder hover:bg-vk/5 dark:hover:bg-vk/10 hover:border-vk/30 transition-all group">
+              <div class="w-10 h-10 rounded-full bg-[#4C75A3] text-white flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M15.072 0H8.928C1.868 0 0 1.868 0 8.928v6.144C0 22.132 1.868 24 8.928 24h6.144c7.06 0 8.928-1.868 8.928-8.928V8.928C24 1.868 22.132 0 15.072 0zm4.828 17.15c0 .324-.263.587-.587.587H15.99c-.324 0-.587-.263-.587-.587v-3.332c0-.528-.428-.956-.956-.956s-.956.428-.956.956v3.332c0 .324-.263.587-.587.587H9.577a.587.587 0 0 1-.587-.587V9.577c0-.324.263-.587.587-.587h3.332c.324 0 .587.263.587.587v1.896c0 .528.428.956.956.956s.956-.428.956-.956V9.577c0-.324.263-.587.587-.587h3.332c.324 0 .587.263.587.587v7.573z" opacity=".1"/><path d="M13.162 18.994c-6.198 0-9.736-4.246-9.885-11.306h3.11c.105 5.18 2.384 7.37 4.19 7.82V7.688h2.923v4.468c1.789-.195 3.664-2.208 4.29-4.468h3.11c-.555 2.823-2.614 4.836-3.774 5.512 1.16.54 3.524 2.298 4.498 5.794h-3.216c-.765-2.384-2.668-4.23-3.837-4.35v4.35h-.31z"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">VK</span>
+            </button>
+          </div>
+          <p class="text-[11px] text-gray-500 mt-3 italic text-center">Login karne ke baad jo link aayega, use copy karke niche step 2 me paste karein.</p>
+        </div>
+
+        <div class="repl-card p-6 mb-6">
+          <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4">Step 2: Paste Redirect Link</h2>
+          <div class="space-y-4">
+            <div>
+              <label for="redirect-url" class="block font-medium text-xs text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">Redirect URL</label>
+              <textarea id="redirect-url" rows="3" placeholder="Paste the full link here... (https://ticket.kiosgamer.co.id/?eat=...)" class="w-full px-4 py-3 text-sm rounded-xl bg-gray-50 dark:bg-replDark border border-replLightBorder dark:border-replDarkBorder text-gray-900 dark:text-white focus:ring-2 focus:ring-replAccent focus:outline-none transition-all resize-none"></textarea>
+            </div>
+            <button onclick="extractToken()" class="w-full text-center px-5 py-3 rounded-xl bg-replAccent hover:bg-blue-600 text-white font-bold text-sm transition-all shadow-md active:scale-[0.98]">Extract Access Token</button>
+          </div>
+        </div>
+
+        <div id="result-box" class="repl-card p-6 hidden animate-in fade-in duration-300">
+          <div class="flex items-center justify-between mb-4 border-b border-replLightBorder dark:border-replDarkBorder pb-3">
+            <h3 class="font-bold text-gray-900 dark:text-white">Extracted Token</h3>
+            <span class="text-[10px] bg-green-500/10 text-green-500 px-2 py-0.5 rounded-full font-bold uppercase">Success</span>
+          </div>
+          <div class="relative group">
+            <div id="token-display" class="w-full p-4 pr-12 text-sm font-mono break-all rounded-xl bg-gray-100 dark:bg-replDark text-gray-800 dark:text-gray-200 border border-transparent group-hover:border-replAccent/30 transition-all">
+              —
+            </div>
+            <button onclick="copyToken()" class="absolute right-3 top-3 p-2 rounded-lg bg-white dark:bg-replDarkSurface border border-replLightBorder dark:border-replDarkBorder text-gray-500 hover:text-replAccent transition-colors" title="Copy Token">
+              <svg id="copy-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <svg id="check-icon" class="w-5 h-5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </button>
+          </div>
+          <p class="text-[11px] text-gray-500 mt-4 text-center">Use this token in other tools that require an access token.</p>
+        </div>
+
+        <!-- Video Tutorial Section -->
+        <div class="mt-8 mb-6">
+          <h2 class="text-base font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            Tutorial: How to use this Tool?
+          </h2>
+          <div class="repl-card overflow-hidden shadow-lg border-red-500/10 dark:border-red-500/20">
+            <div class="aspect-video w-full">
+              <iframe 
+                class="w-full h-full"
+                src="https://www.youtube.com/embed/XQAfna3vHrU" 
+                title="Free Fire Get Access Token Tutorial" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="p-4 bg-gray-50 dark:bg-replDarkSurface border-t border-replLightBorder dark:border-replDarkBorder">
+              <p class="text-xs text-gray-500 dark:text-gray-400">Step by step explaination on how to login and extract the token securely.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEO/Information Content Section -->
+        <div class="mt-8 space-y-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          <div class="repl-card p-6">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Understanding Free Fire Access Tokens</h2>
+            <p class="mb-4">
+              A Free Fire Access Token (Garena Token) is a unique authorization code that verifies your account identity without requiring your password. This token is essential for advanced third-party tools such as **Profile Boosters, Like Increasers, and Rank Checkers**, allowing them to send authorized requests to Garena's servers on your behalf.
+            </p>
+            
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">How to Obtain the Token?</h3>
+            <ul class="list-decimal list-inside space-y-2 mb-4 ml-2">
+              <li>Select your preferred login platform (Facebook, Google, Apple, or VK) from the options above.</li>
+              <li>Authenticate your account through the official Garena login portal.</li>
+              <li>Upon successful login, you will be redirected to a specific URL (usually starting with kiosksgamer).</li>
+              <li>Copy the entire redirect URL from your browser's address bar.</li>
+              <li>Paste the URL into our <strong>Extraction Box</strong> and click "Extract Access Token".</li>
+              <li>Our tool will automatically parse the <code class="bg-gray-100 dark:bg-replDark px-1 rounded">eat</code> parameter to provide your token.</li>
+            </ul>
+
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">Is it Safe to Use?</h3>
+            <p class="mb-4">
+              Yes, using an access token is significantly more secure than sharing your account password. These tokens are generated through Garena's official OAuth system. Our tool only extracts the token locally and does not store or transmit any of your private information. For added security, you can log out from your Garena account sessions after using the token.
+            </p>
+
+            <div class="p-4 bg-amber-500/5 border-l-4 border-amber-500 rounded-r-lg">
+              <p class="text-xs italic text-amber-700 dark:text-amber-400">
+                <strong>Important Note:</strong> Never share your access token with untrusted individuals. Anyone with your token may gain limited access to your account's social features and game data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+<footer class="py-6 border-t border-replLightBorder dark:border-replDarkBorder bg-replLight/50 dark:bg-replDark/50 text-center text-sm text-gray-500 dark:text-gray-400">
+    © 2025 FF Tools. Educational use only.
+</footer>
+
+<script>
+    function openAuth(platformId) {
+        const baseUrl = "https://auth.garena.com/universal/oauth?";
+        const params = new URLSearchParams({
+            platform: platformId,
+            response_type: 'code',
+            locale: 'en-SG',
+            client_id: '100067',
+            redirect_uri: 'https://api.ff.garena.co.id/auth/auth/callback_n?site=https://api-ticket.ff.gameid.garena.co.id/oauth/callback_redirect/'
+        });
+        window.open(baseUrl + params.toString(), '_blank');
+    }
+
+    function extractToken() {
+        const urlInput = document.getElementById('redirect-url').value.trim();
+        const resultBox = document.getElementById('result-box');
+        const tokenDisplay = document.getElementById('token-display');
+
+        if (!urlInput) {
+            alert('Please paste a link first!');
+            return;
+        }
+
+        try {
+            const url = new URL(urlInput);
+            const eat = url.searchParams.get('eat');
+
+            if (eat) {
+                tokenDisplay.textContent = eat;
+                resultBox.classList.remove('hidden');
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('Token "eat" parameter not found in the URL. Please make sure you pasted the correct redirect link.');
+            }
+        } catch (e) {
+            // Support URLs that might be malformed or just the query string
+            const match = urlInput.match(/[?&]eat=([^&#]*)/);
+            if (match && match[1]) {
+                tokenDisplay.textContent = match[1];
+                resultBox.classList.remove('hidden');
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('Invalid URL or token not found. Please try again.');
+            }
+        }
+    }
+
+    function copyToken() {
+        const token = document.getElementById('token-display').textContent;
+        const copyIcon = document.getElementById('copy-icon');
+        const checkIcon = document.getElementById('check-icon');
+
+        navigator.clipboard.writeText(token).then(() => {
+            copyIcon.classList.add('hidden');
+            checkIcon.classList.remove('hidden');
+            setTimeout(() => {
+                copyIcon.classList.remove('hidden');
+                checkIcon.classList.add('hidden');
+            }, 2000);
+        });
+    }
+</script>
+
+<script src="../js/main.js"></script>
+<script>
+    // Redirect/Popunder Direct Link Ad Script
+    document.addEventListener('click', function(e) {
+      if (!window.monetag_opened) {
+        window.monetag_opened = true;
+        window.open('https://omg10.com/4/10753620', '_blank');
+      }
+    }, { capture: true });
+</script>
+</body>
+</html>

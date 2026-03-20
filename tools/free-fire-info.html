@@ -43,6 +43,29 @@
       @apply border border-replLightBorder dark:border-replDarkBorder bg-gray-50 dark:bg-replDark p-4 rounded-xl;
     }
     .theme-toggle-btn.active { @apply bg-gray-200 text-gray-900 dark:bg-replDarkBorder dark:text-white; }
+
+    /* Professional Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      @apply bg-transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(155, 155, 155, 0.5);
+      border-radius: 20px;
+      border: 3px solid transparent;
+      background-clip: content-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(155, 155, 155, 0.8);
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
   </style>
   <meta name="monetag" content="02fb45f72d74cb3e0e8645f706c751af">
 </head>
@@ -293,7 +316,7 @@
         list.innerHTML = '';
         count.textContent = '';
         try{
-          var res = await fetch('https://free-fire-info-five.vercel.app/info?uid='+encodeURIComponent(uid), {mode:'cors'});
+          var res = await fetch('http://raw.sukhdaku.qzz.io/player/info?uid='+encodeURIComponent(uid), {mode:'cors'});
           var data = await res.json();
           var pd = data.playerData || {};
           var prof = data.profileInfo || {};
@@ -330,7 +353,7 @@
           petFallback.textContent = '';
           if (pet.skinId || pet.id){
             var idForImg = pet.skinId || pet.id;
-            var directPet = 'https://items-gold.vercel.app/item?id='+idForImg;
+            var directPet = 'http://87.106.82.84:14329/item?id='+idForImg;
             var triedJsonPet = false;
             petImg.onerror = async function(){
               if (triedJsonPet){
@@ -340,7 +363,7 @@
               }
               triedJsonPet = true;
               try{
-                var r = await fetch('https://items-gold.vercel.app/item?id='+idForImg, {mode:'cors'});
+                var r = await fetch('http://87.106.82.84:14329/item?id='+idForImg, {mode:'cors'});
                 var ct = r.headers.get('content-type') || '';
                 if (ct.includes('application/json')){
                   var d = await r.json();
@@ -366,7 +389,7 @@
             img.loading = 'lazy';
             img.alt = 'Item '+id;
             img.className = 'w-full h-full object-contain p-2';
-            var direct = 'https://items-gold.vercel.app/item?id='+id;
+            var direct = 'http://87.106.82.84:14329/item?id='+id;
             var triedJson = false;
             img.onerror = async function(el, itemId){
               return async function(){
@@ -380,7 +403,7 @@
                 }
                 triedJson = true;
                 try{
-                  var r = await fetch('https://items-gold.vercel.app/item?id='+itemId, {mode:'cors'});
+                  var r = await fetch('http://87.106.82.84:14329/item?id='+itemId, {mode:'cors'});
                   var ct = r.headers.get('content-type') || '';
                   if (ct.includes('application/json')){
                     var d = await r.json();

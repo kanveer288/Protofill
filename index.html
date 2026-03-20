@@ -1,481 +1,320 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire Neon Tools</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
-                    colors: {
-                        neon: { purple: '#a855f7', blue: '#3b82f6', dark: '#0f172a', card: '#1e293b' }
-                    },
-                    animation: {
-                        'gradient': 'gradient 10s ease infinite',
-                        'float': 'float 3s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                    },
-                    keyframes: {
-                        gradient: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: 1, boxShadow: '0 0 15px 0px rgba(168, 85, 247, 0.5)' },
-                            '50%': { opacity: .7, boxShadow: '0 0 25px 5px rgba(59, 130, 246, 0.6)' }
-                        }
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Tools & Blog | Player Info, Ban Check, Bio Changer</title>
+  <meta name="description" content="Free Fire tools: player info, ban check, bio changer, outfit check, visits increaser. Tips aur guides blog. Sab free.">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            replLight: '#FBFCFD',
+            replLightSurface: '#FFFFFF',
+            replLightBorder: '#E5E7EB',
+            replLightHover: '#F3F4F6',
+            replDark: '#0E1525',
+            replDarkSurface: '#1C2333',
+            replDarkBorder: '#2B3245',
+            replDarkHover: '#2C334A',
+            replAccent: '#0F87FF'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Outfit"', 'system-ui', 'sans-serif'],
+          }
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .glass {
-                @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
-            }
-            .glass-card {
-                @apply glass rounded-2xl p-6 transition-all duration-300;
-            }
-            .glass-card:hover {
-                @apply bg-white/10 -translate-y-1 border-neon-purple/50 shadow-[0_0_20px_rgba(168,85,247,0.2)];
-            }
-            .text-gradient {
-                @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-purple to-neon-blue;
-            }
-            .btn-primary {
-                @apply px-6 py-2 rounded-xl bg-gradient-to-r from-neon-purple to-neon-blue text-white font-semibold 
-                       transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:scale-105 active:scale-95;
-            }
-            .bg-animated {
-                background: linear-gradient(-45deg, #0f172a, #1e1b4b, #172554, #0f172a);
-                background-size: 400% 400%;
-                @apply animate-gradient;
-            }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="js/theme.js"></script>
+  <style type="text/tailwindcss">
+    @layer base {
+      body { @apply bg-replLight text-gray-900 dark:bg-replDark dark:text-gray-100 min-h-screen antialiased transition-colors duration-300; }
+      h1, h2, h3 { @apply font-display tracking-tight; }
+    }
+    .repl-card {
+      @apply bg-replLightSurface border border-replLightBorder rounded-xl transition-all duration-200 
+      hover:shadow-sm hover:border-gray-300 dark:bg-replDarkSurface dark:border-replDarkBorder 
+      dark:hover:bg-replDarkHover dark:hover:border-gray-600;
+    }
+    .repl-icon-wrap {
+      @apply inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 text-gray-700 
+      dark:bg-replDark dark:text-gray-300 mb-3 transition-colors duration-200;
+    }
+    .repl-card:hover .repl-icon-wrap {
+      @apply bg-replAccent text-white dark:bg-replAccent dark:text-white;
+    }
+    .theme-toggle-btn.active { @apply bg-gray-200 text-gray-900 dark:bg-replDarkBorder dark:text-white; }
+  </style>
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    let tokenClient;
+
+    window.currentUser = null;
+
+    function updateUI(user) {
+      window.currentUser = user;
+      const gBtns = document.querySelectorAll('.google-custom-btn');
+      const userProfile = document.getElementById('user-profile');
+      const userAvatar = document.getElementById('user-avatar');
+      const modal = document.getElementById('login-modal');
+
+      if (user) {
+        gBtns.forEach(b => b.style.display = 'none');
+        if (userProfile) userProfile.classList.remove('hidden');
+        if (userAvatar) userAvatar.src = user.picture || `https://ui-avatars.com/api/?name=${user.name}&background=0F87FF&color=fff`;
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
         }
-        body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
-        
-        /* Toast Transitions */
-        .toast-enter { transform: translateX(120%); }
-        .toast-active { transform: translateX(0); }
-        
-        /* Fade transitions */
-        .fade-in { animation: fadeIn 0.5s ease-in forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
+      } else {
+        gBtns.forEach(b => b.style.display = 'flex'); // Flex to restore button layout
+        if (userProfile) userProfile.classList.add('hidden');
+        localStorage.removeItem('ff_user');
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Intercept tool clicks if not logged in
+      document.querySelectorAll('#tools-grid a.repl-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (!window.currentUser) {
+            e.preventDefault();
+            const modal = document.getElementById('login-modal');
+            if(modal) {
+              modal.classList.remove('hidden');
+              modal.classList.add('flex');
+            }
+          }
+        });
+      });
+      // Initialize the OAuth 2.0 Token Client for custom button trigger
+      if (typeof google !== 'undefined' && google.accounts && google.accounts.oauth2) {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: '917468145888-lh1tsp9jfffcg6ibgbhn8h63jnp6uut0.apps.googleusercontent.com',
+          scope: 'profile email',
+          callback: (tokenResponse) => {
+            if (tokenResponse && tokenResponse.access_token) {
+              fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: { Authorization: `Bearer ${tokenResponse.access_token}` }
+              })
+              .then(res => res.json())
+              .then(data => {
+                 updateUI({ name: data.name, picture: data.picture });
+                 localStorage.setItem('ff_user', JSON.stringify({ name: data.name, picture: data.picture }));
+              })
+              .catch(err => console.error('Error fetching user info', err));
+            }
+          }
+        });
+      }
+
+      const storedUser = localStorage.getItem('ff_user');
+      if (storedUser) {
+        updateUI(JSON.parse(storedUser));
+      } else {
+        updateUI(null);
+      }
+
+      document.querySelectorAll('.google-custom-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(tokenClient) {
+             tokenClient.requestAccessToken();
+          } else {
+             alert("Google API script still loading. Please try again in a moment.");
+          }
+        });
+      });
+
+      const logoutBtn = document.getElementById('logout-btn');
+      if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          updateUI(null);
+        });
+      }
+    });
+  </script>
+  <meta name="monetag" content="02fb45f72d74cb3e0e8645f706c751af">
 </head>
-<body class="bg-animated min-h-screen flex flex-col relative w-full selection:bg-neon-purple/30 selection:text-white">
-
-    <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-3 pointer-events-none"></div>
-
-    <!-- Full Screen Loading Overlay -->
-    <div id="loading-overlay" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center hidden">
-        <div class="w-16 h-16 border-4 border-white/10 border-t-neon-purple rounded-full animate-spin"></div>
-        <p class="mt-4 text-neon-blue font-medium tracking-widest animate-pulse">CONNECTING...</p>
-    </div>
-
-    <!-- ==================== LOGIN PAGE ==================== -->
-    <section id="login-section" class="flex-1 flex items-center justify-center p-4 fade-in">
-        <div class="glass max-w-md w-full rounded-3xl p-8 text-center relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-32 h-32 bg-neon-purple/30 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-neon-blue/30 rounded-full blur-3xl"></div>
-            
-            <div class="relative z-10">
-                <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-neon-purple to-neon-blue flex items-center justify-center mb-6 animate-pulse-glow">
-                    <i class="fa-solid fa-fire-flame-curved text-3xl text-white"></i>
-                </div>
-                <h1 class="text-3xl font-bold mb-2 text-gradient">FF Neon Tools</h1>
-                <p class="text-gray-400 text-sm mb-8">Sign in to access exclusive Free Fire tools and boosters.</p>
-                
-                <button id="btn-google-login" class="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300 font-medium active:scale-95 group">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-6 h-6 group-hover:scale-110 transition-transform">
-                    <span>Sign in with Google</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== DASHBOARD SECTION ==================== -->
-    <section id="dashboard-section" class="flex-1 flex flex-col hidden fade-in w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Navbar -->
-        <nav class="py-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-white/10 mb-8">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid fa-gamepad text-2xl text-neon-purple"></i>
-                <h2 class="text-xl font-bold text-white tracking-wide">FF <span class="text-gradient">NEON</span></h2>
-            </div>
-            
-            <div class="flex items-center gap-4 glass rounded-full py-2 px-4">
-                <img id="user-avatar" src="" alt="Avatar" class="w-9 h-9 rounded-full border-2 border-neon-blue">
-                <div class="text-sm text-left hidden sm:block">
-                    <p class="text-gray-300 text-xs">Welcome back,</p>
-                    <p id="user-name" class="font-semibold text-white">User Name</p>
-                </div>
-                <button id="btn-logout" class="ml-2 text-neon-purple hover:text-red-400 transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-full" title="Logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </button>
-            </div>
+<body>
+  <header class="sticky top-0 z-50 border-b border-replLightBorder dark:border-replDarkBorder bg-replLight/90 dark:bg-replDark/90 backdrop-blur-md" role="banner">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 sm:h-16">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-gray-900 dark:text-white" aria-label="Home">
+        <span class="flex items-center justify-center w-8 h-8 rounded bg-replAccent text-white shrink-0 font-display font-bold text-lg">
+          FF
+        </span>
+        <span class="hidden sm:inline">Tools & Blog</span>
+      </a>
+      
+      <div class="flex items-center gap-4">
+        <nav class="hidden sm:flex items-center gap-6" aria-label="Main">
+          <a href="index.html#tools" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium transition-colors">Tools</a>
+          <a href="blog.html" class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium transition-colors">Blog</a>
         </nav>
 
-        <!-- Stats Counters -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-            <div class="glass-card text-center relative overflow-hidden border-b-2 border-b-neon-purple">
-                <i class="fa-solid fa-users text-2xl text-neon-purple mb-2 opacity-50 absolute right-4 top-4"></i>
-                <h3 class="text-3xl font-bold counter" data-target="15420">0</h3>
-                <p class="text-sm text-gray-400 uppercase tracking-wider mt-1">Total Users</p>
-            </div>
-            <div class="glass-card text-center relative overflow-hidden border-b-2 border-b-neon-blue">
-                <i class="fa-solid fa-server text-2xl text-neon-blue mb-2 opacity-50 absolute right-4 top-4"></i>
-                <h3 class="text-3xl font-bold counter" data-target="99">0</h3>
-                <p class="text-sm text-gray-400 uppercase tracking-wider mt-1">Uptime %</p>
-            </div>
-            <div class="glass-card text-center relative overflow-hidden border-b-2 border-b-emerald-400">
-                <i class="fa-solid fa-bolt text-2xl text-emerald-400 mb-2 opacity-50 absolute right-4 top-4"></i>
-                <h3 class="text-3xl font-bold counter" data-target="85933">0</h3>
-                <p class="text-sm text-gray-400 uppercase tracking-wider mt-1">Requests Sent</p>
-            </div>
+        <div class="h-6 w-px bg-gray-200 dark:bg-replDarkBorder hidden sm:block"></div>
+
+        <!-- Auth Section -->
+        <button id="login-btn" class="google-custom-btn text-sm font-medium bg-replAccent hover:bg-blue-600 text-white px-4 py-1.5 rounded-md transition-colors flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Google Login
+        </button>
+
+        <div id="user-profile" class="hidden flex items-center gap-3 relative group">
+          <img id="user-avatar" src="" alt="Profile" class="w-8 h-8 rounded-full border border-gray-200 dark:border-gray-700 cursor-pointer">
+          <button id="logout-btn" class="absolute right-0 top-10 mt-2 bg-white dark:bg-replDarkSurface border border-replLightBorder dark:border-replDarkBorder text-red-500 text-sm py-1.5 px-4 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+            Logout
+          </button>
         </div>
 
-        <!-- Main Tools Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-            
-            <!-- UID Search Tool (Left Column) -->
-            <div class="lg:col-span-7 space-y-6">
-                <div class="flex items-center gap-3 mb-2">
-                    <i class="fa-solid fa-magnifying-glass text-neon-purple"></i>
-                    <h2 class="text-2xl font-bold text-white">UID Status Tool</h2>
-                </div>
-                
-                <div class="glass p-6 rounded-2xl border border-neon-purple/30">
-                    <p class="text-gray-300 text-sm mb-4">Enter a Player's UID to fetch real-time game statistics.</p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input type="number" id="uid-input" placeholder="e.g. 123456789" class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-colors">
-                        <button id="btn-search-uid" class="btn-primary flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-radar"></i> Scan UID
-                        </button>
-                    </div>
-
-                    <!-- Search Result Card (Hidden by default) -->
-                    <div id="uid-result-card" class="mt-6 glass bg-black/40 rounded-xl p-5 hidden animate-float">
-                        <div class="flex items-start justify-between border-b border-white/10 pb-4 mb-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-lg bg-gray-800 border border-neon-purple flex items-center justify-center">
-                                    <i class="fa-solid fa-user-astronaut text-2xl text-neon-purple"></i>
-                                </div>
-                                <div>
-                                    <h4 id="res-nickname" class="text-lg font-bold text-white">Loading...</h4>
-                                    <p class="text-xs text-gray-400">UID: <span id="res-uid">---</span></p>
-                                </div>
-                            </div>
-                            <span id="res-region" class="px-3 py-1 bg-neon-blue/20 text-neon-blue text-xs font-semibold rounded-full border border-neon-blue/30">IND</span>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-white/5 rounded-lg p-3 text-center">
-                                <i class="fa-solid fa-star text-amber-400 mb-1"></i>
-                                <p class="text-xs text-gray-400">Level</p>
-                                <p id="res-lvl" class="font-bold text-lg">--</p>
-                            </div>
-                            <div class="bg-white/5 rounded-lg p-3 text-center">
-                                <i class="fa-solid fa-heart text-red-500 mb-1"></i>
-                                <p class="text-xs text-gray-400">Likes</p>
-                                <p id="res-likes" class="font-bold text-lg">--</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other Tools Grid (Right Column) -->
-            <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-6">
-                <div class="flex items-center gap-3 mb-2 lg:hidden">
-                    <i class="fa-solid fa-toolbox text-neon-blue"></i>
-                    <h2 class="text-2xl font-bold text-white">More Boosters</h2>
-                </div>
-
-                <!-- Like Booster -->
-                <div class="glass-card group cursor-pointer flex flex-col justify-between" onclick="showToast('Connecting to server...', 'info')">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-red-500/20 text-red-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-heart-circle-bolt text-lg"></i>
-                        </div>
-                        <h3 class="font-semibold text-white mb-2">Like Booster</h3>
-                        <p class="text-xs text-gray-400 mb-4">Automatically send likes to your ID hourly using our server network.</p>
-                    </div>
-                    <button class="w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm text-center text-white font-medium border border-white/10 transition-colors">Setup Booster</button>
-                </div>
-
-                <!-- Ban Checker -->
-                <div class="glass-card group cursor-pointer flex flex-col justify-between" onclick="showToast('Service temporarily offline', 'error')">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-orange-500/20 text-orange-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-shield-halved text-lg"></i>
-                        </div>
-                        <h3 class="font-semibold text-white mb-2">Ban Check</h3>
-                        <p class="text-xs text-gray-400 mb-4">Deep scan via database to check account blacklisting or ban risk.</p>
-                    </div>
-                    <button class="w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm text-center text-white font-medium border border-white/10 transition-colors">Scan Account</button>
-                </div>
-
-                <!-- Visit Booster -->
-                <div class="glass-card group cursor-pointer flex flex-col justify-between" onclick="showToast('Visit Booster activated!', 'success')">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-eye text-lg"></i>
-                        </div>
-                        <h3 class="font-semibold text-white mb-2">Visit Booster</h3>
-                        <p class="text-xs text-gray-400 mb-4">Increase profile page visits to look more popular in regional leaderboard.</p>
-                    </div>
-                    <button class="w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm text-center text-white font-medium border border-white/10 transition-colors">Start Boosting</button>
-                </div>
-
-            </div>
+        <div class="flex items-center gap-1">
+          <div class="flex rounded-md bg-gray-100 dark:bg-replDarkSurface border border-gray-200 dark:border-replDarkBorder p-0.5" role="group">
+            <button type="button" data-theme="day" class="theme-btn theme-toggle-btn p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </button>
+            <button type="button" data-theme="night" class="theme-btn theme-toggle-btn p-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </button>
+          </div>
+          <button type="button" class="nav-toggle sm:hidden p-2 text-gray-600 dark:text-gray-300">☰</button>
         </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-12 sm:py-20 text-center border-b border-replLightBorder dark:border-replDarkBorder">
+      <div class="max-w-3xl mx-auto px-4">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Level up your Free Fire game</h1>
+        <p class="text-gray-600 dark:text-gray-400 text-lg">Powerful tools to check stats, generate bios, verify bans and more. Login to access all tools securely.</p>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="main-footer" class="mt-auto border-t border-white/10 bg-black/30 backdrop-blur-md hidden w-full fade-in">
-        <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p class="text-sm text-gray-400">&copy; 2026 Free Fire Neon Project</p>
-            <div class="flex items-center gap-4">
-                <a href="#" class="text-gray-400 hover:text-[#5865F2] transition-colors"><i class="fa-brands fa-discord text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
-            </div>
-            <p class="text-xs text-gray-500">Made by <span class="text-neon-purple font-semibold">DevTeam</span></p>
+    <!-- Tools Section wrapped with Auth Logic -->
+    <section id="tools" class="py-16 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 relative">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Workspace Tools</h2>
         </div>
-    </footer>
-
-    <!-- Firebase SDK (Modular) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-
-        // ==========================================
-        // FIREBASE CONFIGURATION (Placeholder)
-        // Note: Replace these with your actual Firebase Project config!
-        // ==========================================
-        const firebaseConfig = {
-            apiKey: "AIzaSyDummyKeyForTemplateCustomizeHere123",
-            authDomain: "dummy-ff-neon-project.firebaseapp.com",
-            projectId: "dummy-ff-neon-project",
-            storageBucket: "dummy-ff-neon-project.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abcd1234xyz"
-        };
-
-        // Initialize Firebase ONLY IF API KEY IS VALID to avoid breaking the demo
-        let auth = null;
-        let provider = null;
+               <!-- Login Modal (Hidden by default) -->
+        <div id="login-modal" class="fixed inset-0 z-[100] flex-col items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+          <div class="bg-white dark:bg-replDarkSurface border border-replLightBorder dark:border-replDarkBorder p-6 rounded-xl shadow-xl text-center max-w-sm m-4 relative animate-fade-in">
+            <button onclick="document.getElementById('login-modal').classList.add('hidden'); document.getElementById('login-modal').classList.remove('flex');" class="absolute top-3 right-3 text-gray-400 hover:text-gray-900 dark:hover:text-white">✕</button>
+            <svg class="w-12 h-12 mx-auto text-replAccent mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+            </svg>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Login Required</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">You need to sign in with Google to use all the tools available in your workspace.</p>
+            <button id="login-btn-large" class="google-custom-btn w-full py-2 bg-replAccent text-white text-sm font-medium rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Sign In Now
+            </button>
+          </div>
+        </div>
         
-        try {
-            if (firebaseConfig.apiKey.includes("DummyKey")) {
-                console.warn("Using Dummy Firebase Config. Auth will be mocked for demo purposes.");
-                setupMockAuth();
-            } else {
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                provider = new GoogleAuthProvider();
-                
-                onAuthStateChanged(auth, (user) => {
-                    handleAuthUIChange(user);
-                });
+        <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <a href="tools/free-fire-info.html" class="repl-card p-5 group block">
+            <span class="repl-icon-wrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </span>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">Player Info</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Fetch detailed profile stats, rank info, and activity from an ID.</p>
+          </a>
+          <a href="tools/free-fire-change-bio.html" class="repl-card p-5 group block">
+            <span class="repl-icon-wrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.897L6 18l.8-2.685a4.5 4.5 0 011.897-1.897l8.932-8.931zm0 0L19.5 7.125"/></svg>
+            </span>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">Change Bio</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Generate stylish and colorful bio signatures using hex codes.</p>
+          </a>
+          <a href="tools/free-fire-ban-check.html" class="repl-card p-5 group block">
+            <span class="repl-icon-wrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            </span>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">Ban Check</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Instantly verify the ban or suspension status of any account.</p>
+          </a>
+          <a href="tools/free-fire-outfit-check.html" class="repl-card p-5 group block">
+            <span class="repl-icon-wrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+            </span>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">Outfit Preview</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Preview character bundles, skins, and equipables fetched entirely.</p>
+          </a>
+          <a href="tools/free-fire-visits-increaser.html" class="repl-card p-5 group block">
+            <span class="repl-icon-wrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+            </span>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">Visits Booster</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Automate pushing profile visits directly using backend requests.</p>
+          </a>
+          <a href="tools/free-fire-spam-sender.html" class="repl-card p-5 group block">
+            <span class="repl-icon-wrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+            </span>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">Spam Sender</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Bulk messaging network tester. Use responsibly and carefully.</p>
+          </a>
+        </div>
+      </div>
+    </section>
 
-                document.getElementById('btn-google-login').addEventListener('click', () => {
-                    showLoading(true);
-                    signInWithPopup(auth, provider).then((result) => {
-                        showToast(`Welcome back, ${result.user.displayName}!`, 'success');
-                        showLoading(false);
-                    }).catch((error) => {
-                        showToast("Login failed: " + error.message, 'error');
-                        showLoading(false);
-                    });
-                });
+    <section id="features" class="py-16 border-t border-replLightBorder dark:border-replDarkBorder">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Recent Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="repl-card overflow-hidden group">
+            <div class="h-32 bg-gray-200 dark:bg-replDarkBorder flex items-center justify-center p-4">
+              <div class="text-gray-500 dark:text-gray-400 font-display">Rank Tips</div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-sm text-gray-900 dark:text-white mb-1 group-hover:text-replAccent transition">How to use free fire long bio bot</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Master the new meta and rank up faster this season.</p>
+            </div>
+          </article>
+          <article class="repl-card overflow-hidden group">
+            <div class="h-32 bg-gray-200 dark:bg-replDarkBorder flex items-center justify-center p-4">
+              <div class="text-gray-500 dark:text-gray-400 font-display">Event Guide</div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-sm text-gray-900 dark:text-white mb-1 group-hover:text-replAccent transition">Claim Free Rewards</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Step by step on how to exploit the latest events.</p>
+            </div>
+          </article>
+          <article class="repl-card overflow-hidden group">
+            <div class="h-32 bg-gray-200 dark:bg-replDarkBorder flex items-center justify-center p-4">
+              <div class="text-gray-500 dark:text-gray-400 font-display">Meta Configs</div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-sm text-gray-900 dark:text-white mb-1 group-hover:text-replAccent transition">Sensitivity Pro Config</h3>
+              <p class="text-xs text-gray-500 dark:text-gray-400">DPI and HUD configs for maximum one-tap precision.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                document.getElementById('btn-logout').addEventListener('click', () => {
-                    signOut(auth);
-                    showToast("Logged out successfully", 'info');
-                });
-            }
-        } catch (e) {
-            console.error("Firebase init failed: ", e);
-            setupMockAuth(); // Fallback to mock auth if firebase fails to load
-        }
+  <footer class="py-8 border-t border-replLightBorder dark:border-replDarkBorder bg-replLight/50 dark:bg-replDark/50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
+      <div>© 2025 FF Tools. Educational use only.</div>
+      <div class="mt-4 md:mt-0 space-x-4">
+        <a href="#" class="hover:text-gray-900 dark:hover:text-white transition">Privacy</a>
+        <a href="#" class="hover:text-gray-900 dark:hover:text-white transition">Terms</a>
+        <a href="index.html#about" class="hover:text-gray-900 dark:hover:text-white transition">About</a>
+      </div>
+    </div>
+  </footer>
 
-        // ==========================================
-        // MOCK AUTHENTICATION (For Demonstration)
-        // ==========================================
-        function setupMockAuth() {
-            const loginBtn = document.getElementById('btn-google-login');
-            const logoutBtn = document.getElementById('btn-logout');
-
-            // Check localStorage
-            const mockUser = localStorage.getItem('mockUser') ? JSON.parse(localStorage.getItem('mockUser')) : null;
-            handleAuthUIChange(mockUser);
-
-            loginBtn.addEventListener('click', () => {
-                showLoading(true);
-                setTimeout(() => {
-                    const user = { displayName: "Demo Player", photoURL: "https://api.dicebear.com/7.x/avataaars/svg?seed=Gamer" };
-                    localStorage.setItem('mockUser', JSON.stringify(user));
-                    handleAuthUIChange(user);
-                    showToast("Mock Login Successful!", "success");
-                    showLoading(false);
-                }, 1000);
-            });
-
-            logoutBtn.addEventListener('click', () => {
-                localStorage.removeItem('mockUser');
-                handleAuthUIChange(null);
-                showToast("Logged out", "info");
-            });
-        }
-
-        // ==========================================
-        // UI AND LOGIC MANAGEMENT
-        // ==========================================
-        
-        // Handle UI switching based on auth state
-        function handleAuthUIChange(user) {
-            const loginSection = document.getElementById('login-section');
-            const dashboardSection = document.getElementById('dashboard-section');
-            const footer = document.getElementById('main-footer');
-
-            if (user) {
-                // User is signed in
-                loginSection.classList.add('hidden');
-                
-                // Update profile info
-                document.getElementById('user-name').innerText = user.displayName || 'Guest User';
-                document.getElementById('user-avatar').src = user.photoURL || 'https://via.placeholder.com/150';
-                
-                // Show dashboard
-                dashboardSection.classList.remove('hidden');
-                footer.classList.remove('hidden');
-                
-                // Trigger counters on login
-                startCounters();
-            } else {
-                // User is not signed in
-                dashboardSection.classList.add('hidden');
-                footer.classList.add('hidden');
-                loginSection.classList.remove('hidden');
-                
-                // Reset search card
-                document.getElementById('uid-result-card').classList.add('hidden');
-                document.getElementById('uid-input').value = '';
-            }
-        }
-
-        // Loading Overlay
-        window.showLoading = function(show) {
-            const overlay = document.getElementById('loading-overlay');
-            if (show) {
-                overlay.classList.remove('hidden');
-            } else {
-                overlay.classList.add('hidden');
-            }
-        }
-
-        // Toast Notification System
-        window.showToast = function(message, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            
-            let bgClass = 'bg-gray-800 border-white/10';
-            let iconClass = 'fa-info-circle text-blue-400';
-            
-            if (type === 'success') { bgClass = 'bg-emerald-900/80 border-emerald-500/30'; iconClass = 'fa-check-circle text-emerald-400'; }
-            if (type === 'error') { bgClass = 'bg-red-900/80 border-red-500/30'; iconClass = 'fa-exclamation-circle text-red-400'; }
-            if (type === 'warning') { bgClass = 'bg-amber-900/80 border-amber-500/30'; iconClass = 'fa-triangle-exclamation text-amber-400'; }
-
-            toast.className = `flex items-center gap-3 px-4 py-3 rounded-lg border backdrop-blur-md shadow-lg text-white text-sm toast transition-transform pointer-events-auto ${bgClass}`;
-            toast.innerHTML = `<i class="fa-solid ${iconClass}"></i><span>${message}</span>`;
-            
-            container.appendChild(toast);
-            
-            // Trigger animation
-            requestAnimationFrame(() => {
-                toast.classList.add('toast-active');
-            });
-
-            setTimeout(() => {
-                toast.classList.remove('toast-active');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        // UID Search Tool Logic (Mocked API)
-        document.getElementById('btn-search-uid').addEventListener('click', () => {
-            const uid = document.getElementById('uid-input').value.trim();
-            if (!uid || uid.length < 5) {
-                showToast("Please enter a valid numeric UID", "warning");
-                return;
-            }
-
-            const btn = document.getElementById('btn-search-uid');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Scanning...`;
-            btn.disabled = true;
-
-            // Simulate API request delay
-            setTimeout(() => {
-                const isFound = Math.random() > 0.2; // 80% success
-                
-                if (isFound) {
-                    // Inject mock data
-                    document.getElementById('res-nickname').innerText = "VBadge_Pto99";
-                    document.getElementById('res-uid').innerText = uid;
-                    document.getElementById('res-lvl').innerText = Math.floor(Math.random() * 20) + 60; // 60-80
-                    document.getElementById('res-likes').innerText = (Math.floor(Math.random() * 5000) + 1000).toLocaleString();
-                    document.getElementById('res-region').innerText = ["IND", "BD", "SG", "BR"][Math.floor(Math.random()*4)];
-                    
-                    document.getElementById('uid-result-card').classList.remove('hidden');
-                    showToast("Player data retrieved successfully!", "success");
-                } else {
-                    document.getElementById('uid-result-card').classList.add('hidden');
-                    showToast("Player not found or privacy restrictions applied.", "error");
-                }
-                
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 1500);
-        });
-
-        // Counter Animation Logic
-        function startCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // lower is slower
-
-            counters.forEach(counter => {
-                counter.innerText = '0';
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = target.toLocaleString();
-                    }
-                };
-                updateCount();
-            });
-        }
-    </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

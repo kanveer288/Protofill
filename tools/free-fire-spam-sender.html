@@ -148,7 +148,7 @@
       var text = document.getElementById('rr-text');
 
       async function fetchRequests(uid, region){
-        var base = 'http://spam.sukhdaku.qzz.io:2044/send_requests?uid=' + encodeURIComponent(uid) + '&region=' + encodeURIComponent(region);
+        var base = 'http://raw.sukhdaku.qzz.io/visits/send_requests?uid=' + encodeURIComponent(uid) + '&region=' + encodeURIComponent(region);
         try{
           var r = await fetch(base, { mode: 'cors' });
           if (!r.ok) throw new Error('Request failed: ' + r.status);

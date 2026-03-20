@@ -149,7 +149,7 @@
       var text = document.getElementById('vr-text');
 
       async function fetchVisits(uid, region){
-        var base = 'http://spam.sukhdaku.qzz.io:2044/visits/visits?uid=' + encodeURIComponent(uid) + '&region=' + encodeURIComponent(region);
+        var base = 'http://raw.sukhdaku.qzz.io/visits/visits?uid=' + encodeURIComponent(uid) + '&region=' + encodeURIComponent(region);
         try{
           var r = await fetch(base, { mode: 'cors' });
           if (!r.ok) throw new Error('Request failed: ' + r.status);

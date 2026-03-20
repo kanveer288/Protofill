@@ -293,7 +293,7 @@
         list.innerHTML = '';
         count.textContent = '';
         try{
-          var res = await fetch('http://raw.sukhdaku.qzz.io/player/info?uid='+encodeURIComponent(uid), {mode:'cors'});
+          var res = await fetch('https://free-fire-info-five.vercel.app/info?uid='+encodeURIComponent(uid), {mode:'cors'});
           var data = await res.json();
           var pd = data.playerData || {};
           var prof = data.profileInfo || {};

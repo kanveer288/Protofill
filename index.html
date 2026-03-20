@@ -59,7 +59,7 @@
   </style>
 
   <!-- Google Identity Services -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://accounts.google.com/gsi/client" onload="initTokenClient()" async defer></script>
   <script>
     let tokenClient;
 
@@ -87,21 +87,7 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      // Intercept tool clicks if not logged in
-      document.querySelectorAll('#tools-grid a.repl-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          if (!window.currentUser) {
-            e.preventDefault();
-            const modal = document.getElementById('login-modal');
-            if (modal) {
-              modal.classList.remove('hidden');
-              modal.classList.add('flex');
-            }
-          }
-        });
-      });
-      // Initialize the OAuth 2.0 Token Client for custom button trigger
+    function initTokenClient() {
       if (typeof google !== 'undefined' && google.accounts && google.accounts.oauth2) {
         tokenClient = google.accounts.oauth2.initTokenClient({
           client_id: '917468145888-lh1tsp9jfffcg6ibgbhn8h63jnp6uut0.apps.googleusercontent.com',
@@ -121,6 +107,25 @@
           }
         });
       }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Intercept tool clicks if not logged in
+      document.querySelectorAll('#tools-grid a.repl-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (!window.currentUser) {
+            e.preventDefault();
+            const modal = document.getElementById('login-modal');
+            if (modal) {
+              modal.classList.remove('hidden');
+              modal.classList.add('flex');
+            }
+          }
+        });
+      });
+      
+      // Initialize if already loaded
+      initTokenClient();
 
       const storedUser = localStorage.getItem('ff_user');
       if (storedUser) {
@@ -134,7 +139,13 @@
           if (tokenClient) {
             tokenClient.requestAccessToken();
           } else {
-            alert("Google API script still loading. Please try again in a moment.");
+            // Try initializing one more time if missing
+            initTokenClient();
+            if (tokenClient) {
+              tokenClient.requestAccessToken();
+            } else {
+              alert("Google API script still loading. Please try again in a moment.");
+            }
           }
         });
       });
@@ -349,6 +360,25 @@
               responsibly and carefully.</p>
           </a>
         </div>
+
+        <!-- Access Token Warning -->
+        <div class="mt-12 p-6 rounded-xl border border-amber-500/20 bg-amber-500/5 dark:bg-amber-500/10">
+          <div class="flex items-start gap-4">
+            <div class="mt-1 p-2 rounded-lg bg-amber-500 text-white shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Warning — About Access Token</h3>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+               Using an access token can allow login to your account. However, this website does not store any of your data. Only use it if you trust us. If you do not trust us, you should use bots that work without an access token.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -405,7 +435,7 @@
   <footer class="py-8 border-t border-replLightBorder dark:border-replDarkBorder bg-replLight/50 dark:bg-replDark/50">
     <div
       class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
-      <div>© 2025 FF Tools. Developed by Sukh Daku.</div>
+      <div>© 2025 FF Tools. Developed By Sukh Daku.</div>
       <div class="mt-4 md:mt-0 space-x-4">
         <a href="#" class="hover:text-gray-900 dark:hover:text-white transition">Privacy</a>
         <a href="#" class="hover:text-gray-900 dark:hover:text-white transition">Terms</a>
